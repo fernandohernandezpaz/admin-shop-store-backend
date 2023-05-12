@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
 export class CreateUserTable1683755252852 implements MigrationInterface {
-  readonly tableName = 'users';
+  readonly tableName = 'user';
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -15,8 +15,9 @@ export class CreateUserTable1683755252852 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'name',
+            name: 'username',
             type: 'varchar',
+            isUnique: true,
             length: '30',
           },
           {
@@ -27,6 +28,7 @@ export class CreateUserTable1683755252852 implements MigrationInterface {
           {
             name: 'email',
             type: 'varchar',
+            isUnique: true,
             length: '30',
           },
           {
