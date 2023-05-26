@@ -20,6 +20,8 @@
     "paths": {
       "@config/*": ["./src/configs/*"],
       "@entities/*": ["./src/entities/*"],
+      "@api/*": ["./src/api/*"],
+      "@common/*": ["./src/common/*"]
     }
   }
 }

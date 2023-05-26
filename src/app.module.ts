@@ -1,15 +1,22 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { DBConnectionConfigs } from '@config/typeOrm.config';
-import AppConfigs from '@config/app.config';
+import { DBConnectionConfigs } from '@config/typeorm.config';
+import { UsersModule } from '@api/v1/users/users.module';
+import { CommonModule } from '@common/common.module';
+import * as entities from '@entities/index';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [AppConfigs],
+      isGlobal: true,
     }),
-    TypeOrmModule.forRootAsync(DBConnectionConfigs),
+    TypeOrmModule.forRoot({
+      ...DBConnectionConfigs.options,
+      entities: entities,
+    }),
+    UsersModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
