@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class CreateUsersTable1683755252852 implements MigrationInterface {
-  readonly tableName = 'users';
+export class CreateCategoriesTable1685418585598 implements MigrationInterface {
+  readonly tableName = 'categories';
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
@@ -9,24 +9,17 @@ export class CreateUsersTable1683755252852 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'uuid',
+            type: 'serial',
             isPrimary: true,
-            isNullable: false,
-            default: 'uuid_generate_v4()',
           },
           {
-            name: 'username',
+            name: 'name',
             type: 'varchar',
             isUnique: true,
             length: '30',
           },
           {
-            name: 'password',
-            type: 'varchar',
-            length: '255',
-          },
-          {
-            name: 'email',
+            name: 'slug',
             type: 'varchar',
             isUnique: true,
             length: '30',
@@ -49,7 +42,6 @@ export class CreateUsersTable1683755252852 implements MigrationInterface {
           },
         ],
       }),
-      true,
     );
   }
 

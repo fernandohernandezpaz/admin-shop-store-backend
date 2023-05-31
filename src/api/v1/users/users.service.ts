@@ -7,10 +7,9 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PaginationDto } from '@common/dtos/pagination.dto';
+import { PaginationDto } from '../../../common/dtos/pagination.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from '@entities/users.entity';
-import { of } from 'rxjs';
+import { Users } from '../../../entities';
 
 @Injectable()
 export class UsersService {
@@ -44,7 +43,7 @@ export class UsersService {
     return user;
   }
 
-  async update(id: string, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto): Promise<Users> {
     const user: Users = await this.usersRepository.preload({
       id,
       ...updateUserDto,
@@ -56,7 +55,7 @@ export class UsersService {
     return user;
   }
 
-  async remove(id: string) {
+  async remove(id: string): Promise<string> {
     const user: Users = await this.findOne(id);
     await this.usersRepository.remove(user);
     return `The user was deleted`;

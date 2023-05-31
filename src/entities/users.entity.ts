@@ -1,8 +1,8 @@
-import { Encrypter } from '@common/Encripter/Encripter';
+import { Encrypter } from '../common/encripter/Encripter';
 import { Entity, Column, PrimaryGeneratedColumn, BeforeInsert } from 'typeorm';
 import { Exclude, classToPlain } from 'class-transformer';
 
-@Entity()
+@Entity('users')
 export class Users {
   @Exclude()
   private readonly encrypter: Encrypter = new Encrypter();
@@ -27,13 +27,13 @@ export class Users {
   active: boolean = true;
 
   @Column({
-    type: 'date',
+    type: 'timestamp',
     default: () => 'NOW()',
   })
   createdAt: string;
 
   @Column({
-    type: 'date',
+    type: 'timestamp',
     default: () => 'NOW()',
   })
   updatedAt: string;

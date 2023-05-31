@@ -19,7 +19,7 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "typeorm": "ts-node ./node_modules/typeorm/cli",
-    "miration:create": "npx typeorm migration:create src/migrations/$npm_config_name",
+    "migration:create": "npx typeorm migration:create",
     "migrate:run": "yarn typeorm migration:run -d src/configs/typeorm.config.ts",
     "migrate:revert": "yarn typeorm migration:revert -d src/configs/typeorm.config.ts"
   },
@@ -38,6 +38,7 @@
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
+    "slugify": "^1.6.6",
     "typeorm": "^0.3.16"
   },
   "devDependencies": {
