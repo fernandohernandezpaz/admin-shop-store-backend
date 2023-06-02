@@ -10,8 +10,8 @@ import {
   Query,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from '../../../dtos/users/dto/create-user.dto';
+import { UpdateUserDto } from '../../../dtos/users/dto/update-user.dto';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
 import { Users } from '../../../entities';
 

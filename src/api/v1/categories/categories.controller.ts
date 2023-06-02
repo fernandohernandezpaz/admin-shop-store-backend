@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { CategoriesService } from './categories.service';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDto } from '../../../dtos/categories/dto/create-category.dto';
+import { UpdateCategoryDto } from '../../../dtos/categories/dto/update-category.dto';
 import { Category } from '../../../entities';
 
 @Controller('categories')
@@ -24,12 +24,12 @@ export class CategoriesController {
   }
 
   @Get()
-  findAll(@Query() paginatioDto: PaginationDto): Promise<Category[]> {
-    return this.categoriesService.findAll(paginatioDto);
+  findAll(@Query() paginationDto: PaginationDto): Promise<Category[]> {
+    return this.categoriesService.findAll(paginationDto);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: number): Promise<Category> {
     return this.categoriesService.findOne(+id);
   }
 
@@ -37,7 +37,7 @@ export class CategoriesController {
   update(
     @Param('id') id: number,
     @Body() updateCategoryDto: UpdateCategoryDto,
-  ) {
+  ): Promise<Category> {
     return this.categoriesService.update(+id, updateCategoryDto);
   }
 

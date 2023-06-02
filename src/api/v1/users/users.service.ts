@@ -1,18 +1,18 @@
 import { Repository } from 'typeorm';
 import {
-  BadRequestException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
+import { CreateUserDto } from '../../../dtos/users/dto/create-user.dto';
+import { UpdateUserDto } from '../../../dtos/users/dto/update-user.dto';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Users } from '../../../entities';
+import { ErrorHandler } from '../../../common/handler/ErrorHandler';
 
 @Injectable()
 export class UsersService {
+  private readonly errorHandler: ErrorHandler = new ErrorHandler();
   constructor(
     @InjectRepository(Users)
     private readonly usersRepository: Repository<Users>,
@@ -24,7 +24,7 @@ export class UsersService {
       await this.usersRepository.save(user);
       return user;
     } catch (error) {
-      this.managmentDbError(error);
+      this.errorHandler.managementDbError(error);
     }
   }
 
@@ -59,13 +59,5 @@ export class UsersService {
     const user: Users = await this.findOne(id);
     await this.usersRepository.remove(user);
     return `The user was deleted`;
-  }
-
-  private managmentDbError(error: any) {
-    if (error.code === '23505') throw new BadRequestException(error.detail);
-
-    throw new InternalServerErrorException(
-      'Unexcepted error, chack server logs',
-    );
   }
 }

@@ -1,17 +1,19 @@
 import { Repository } from 'typeorm';
 import {
-  BadRequestException,
   Injectable,
-  InternalServerErrorException,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDto } from '../../../dtos/categories/dto/create-category.dto';
+import { UpdateCategoryDto } from '../../../dtos/categories/dto/update-category.dto';
 import { Category } from '../../../entities';
+import { ErrorHandler } from '../../../common/handler/ErrorHandler';
+
 @Injectable()
 export class CategoriesService {
+  private readonly errorHandler: ErrorHandler = new ErrorHandler();
+
   public constructor(
     @InjectRepository(Category)
     private readonly categoryRepository: Repository<Category>,
@@ -23,7 +25,7 @@ export class CategoriesService {
       await this.categoryRepository.save(category);
       return category;
     } catch (error) {
-      this.managmentDbError(error);
+      this.errorHandler.managementDbError(error);
     }
   }
 
@@ -43,7 +45,10 @@ export class CategoriesService {
     return category;
   }
 
-  async update(id: number, updateCategoryDto: UpdateCategoryDto) {
+  async update(
+    id: number,
+    updateCategoryDto: UpdateCategoryDto,
+  ): Promise<Category> {
     const category: Category = await this.categoryRepository.preload({
       id,
       ...updateCategoryDto,
@@ -60,13 +65,5 @@ export class CategoriesService {
     const category: Category = await this.findOne(id);
     await this.categoryRepository.remove(category);
     return `The category was deleted`;
-  }
-
-  private managmentDbError(error: any): void {
-    if (error.code === '23505') throw new BadRequestException(error.detail);
-
-    throw new InternalServerErrorException(
-      'Unexcepted error, chack server logs',
-    );
   }
 }

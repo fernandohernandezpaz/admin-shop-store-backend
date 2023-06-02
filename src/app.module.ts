@@ -5,6 +5,7 @@ import { DBConnectionConfigs } from './configs/typeorm.config';
 import { UsersModule } from './api/v1/users/users.module';
 import { CommonModule } from './common/common.module';
 import { CategoriesModule } from './api/v1/categories/categories.module';
+import { StatesModule } from './api/v1/states/states.module';
 import * as entities from './entities/index';
 
 @Module({
@@ -19,6 +20,7 @@ import * as entities from './entities/index';
     UsersModule,
     CommonModule,
     CategoriesModule,
+    StatesModule,
   ],
   controllers: [],
   providers: [],
