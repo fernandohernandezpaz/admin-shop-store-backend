@@ -1,7 +1,3 @@
-import { IsString, MinLength } from 'class-validator';
+import { CatalogAbstractDto } from '../../catalog.abstract.dto';
 
-export class CreateCategoryDto {
-  @IsString()
-  @MinLength(5)
-  name: string;
-}
+export class CreateCategoryDto extends CatalogAbstractDto {}

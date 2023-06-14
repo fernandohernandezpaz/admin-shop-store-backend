@@ -1,3 +1,2 @@
 import { CatalogAbstractDto } from '../../catalog.abstract.dto';
-
-export class CreateStateDto extends CatalogAbstractDto {}
+export class CreateBrandDto extends CatalogAbstractDto {}

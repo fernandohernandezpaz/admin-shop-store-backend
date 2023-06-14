@@ -231,7 +231,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -291,6 +291,274 @@
 								{
 									"key": "id",
 									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "States",
+			"item": [
+				{
+					"name": "List of States",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/states",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create State",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Used\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/states",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get state by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/states/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete state by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/states/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update state by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Newbies\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/states/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Brands",
+			"item": [
+				{
+					"name": "List of Brands",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/states",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"states"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Brand",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Apple\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brands",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brands"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get brand by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/brands/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete state by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/api/brands/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update state by id",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Newbies\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/api/brands/:id",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"api",
+								"brands",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
 								}
 							]
 						}

@@ -1,8 +1,5 @@
 import { Repository } from 'typeorm';
-import {
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateUserDto } from '../../../dtos/users/dto/create-user.dto';
 import { UpdateUserDto } from '../../../dtos/users/dto/update-user.dto';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
