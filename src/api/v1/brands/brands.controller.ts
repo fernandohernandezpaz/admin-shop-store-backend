@@ -8,16 +8,15 @@ import {
   Delete,
   Query,
 } from '@nestjs/common';
-import {BrandsService} from './brands.service';
-import {CreateBrandDto} from '../../../dtos/brands/dto/create-brand.dto';
-import {UpdateBrandDto} from '../../../dtos/brands/dto/update-brand.dto';
-import {Brand} from '../../../entities/brand.entity';
-import {PaginationDto} from '../../../common/dtos/pagination.dto';
+import { BrandsService } from './brands.service';
+import { CreateBrandDto } from '../../../dtos/brands/dto/create-brand.dto';
+import { UpdateBrandDto } from '../../../dtos/brands/dto/update-brand.dto';
+import { Brand } from '../../../entities/brand.entity';
+import { PaginationDto } from '../../../common/dtos/pagination.dto';
 
 @Controller('brands')
 export class BrandsController {
-  constructor(private readonly brandsService: BrandsService) {
-  }
+  constructor(private readonly brandsService: BrandsService) {}
 
   @Post()
   create(@Body() createBrandDto: CreateBrandDto): Promise<Brand> {
@@ -35,7 +34,10 @@ export class BrandsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateBrandDto: UpdateBrandDto): Promise<Brand> {
+  update(
+    @Param('id') id: number,
+    @Body() updateBrandDto: UpdateBrandDto,
+  ): Promise<Brand> {
     return this.brandsService.update(id, updateBrandDto);
   }
 

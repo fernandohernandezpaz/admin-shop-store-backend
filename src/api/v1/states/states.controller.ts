@@ -43,6 +43,6 @@ export class StatesController {
 
   @Delete(':id')
   remove(@Param('id') id: number): Promise<string> {
-    return this.statesService.remove(+id);
+    return this.statesService.remove(id);
   }
 }

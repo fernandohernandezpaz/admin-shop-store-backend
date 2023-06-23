@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateBrandDto } from '../../../dtos/brands/dto/create-brand.dto';
 import { UpdateBrandDto } from '../../../dtos/brands/dto/update-brand.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Brand } from '../../../entities/brand.entity';
+import { Brand } from '../../../entities';
 import { Repository } from 'typeorm';
 import { ErrorHandler } from '../../../common/handler/ErrorHandler';
 import { PaginationDto } from '../../../common/dtos/pagination.dto';
