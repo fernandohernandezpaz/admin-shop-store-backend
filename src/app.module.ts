@@ -8,6 +8,7 @@ import { CategoriesModule } from './api/v1/categories/categories.module';
 import { StatesModule } from './api/v1/states/states.module';
 import { BrandsModule } from './api/v1/brands/brands.module';
 import { ModelsModule } from './api/v1/models/models.module';
+import { PresentationsModule } from './api/v1/presentations/presentations.module';
 import * as entities from './entities/index';
 
 @Module({
@@ -25,6 +26,7 @@ import * as entities from './entities/index';
     StatesModule,
     BrandsModule,
     ModelsModule,
+    PresentationsModule,
   ],
   controllers: [],
   providers: [],

@@ -19,7 +19,7 @@ export class ModelsController {
   constructor(private readonly modelsService: ModelsService) {}
 
   @Post()
-  create(@Body() createModelDto: CreateModelDto) {
+  create(@Body() createModelDto: CreateModelDto): Promise<Model> {
     return this.modelsService.create(createModelDto);
   }
 
@@ -29,17 +29,17 @@ export class ModelsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: number): Promise<Model> {
     return this.modelsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateModelDto: UpdateModelDto) {
+  update(@Param('id') id: number, @Body() updateModelDto: UpdateModelDto): Promise<Model> {
     return this.modelsService.update(id, updateModelDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: number) {
+  remove(@Param('id') id: number): Promise<string> {
     return this.modelsService.remove(id);
   }
 }
