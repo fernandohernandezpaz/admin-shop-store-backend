@@ -18,7 +18,7 @@ export class ModelsService {
   ) {}
   async create(createModelDto: CreateModelDto): Promise<Model> {
     try {
-      const model: Model = await this.modelRepository.create(createModelDto);
+      const model: Model = this.modelRepository.create(createModelDto);
       model.brand = await this.brandService.findOne(createModelDto.brandId);
       await this.modelRepository.save(model);
       return model;
