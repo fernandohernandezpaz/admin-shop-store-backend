@@ -4,10 +4,12 @@ import {
   Table,
   TableForeignKey,
 } from 'typeorm';
+import { query } from 'express';
 
-export class CreateModelTable1686795095610 implements MigrationInterface {
-  private readonly tableName = 'models';
-  private readonly tableBrandName = 'brands';
+export class CreateProductsTable1690836452374 implements MigrationInterface {
+  private readonly tableName = 'products';
+  private readonly tablePresentationName = 'presentations';
+  private readonly tableModelName = 'models';
 
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
@@ -16,24 +18,29 @@ export class CreateModelTable1686795095610 implements MigrationInterface {
         columns: [
           {
             name: 'id',
-            type: 'serial',
+            type: 'uuid',
             isPrimary: true,
+            isNullable: false,
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'brandId',
+            name: 'presentationId',
+            type: 'int',
+          },
+          {
+            name: 'modelId',
             type: 'int',
           },
           {
             name: 'name',
             type: 'varchar',
-            length: '30',
             isUnique: true,
+            length: '255',
           },
           {
             name: 'slug',
             type: 'varchar',
             isUnique: true,
-            length: '30',
           },
           {
             name: 'active',
@@ -55,12 +62,23 @@ export class CreateModelTable1686795095610 implements MigrationInterface {
       }),
       true,
     );
+
     await queryRunner.createForeignKey(
       this.tableName,
       new TableForeignKey({
-        name: 'FK_models_brand_id',
-        columnNames: ['brandId'],
-        referencedTableName: this.tableBrandName,
+        name: 'FK_products_presentation_id',
+        columnNames: ['presentationId'],
+        referencedTableName: this.tablePresentationName,
+        referencedColumnNames: ['id'],
+        onDelete: 'CASCADE',
+      }),
+    );
+    await queryRunner.createForeignKey(
+      this.tableName,
+      new TableForeignKey({
+        name: 'FK_products_models_id',
+        columnNames: ['modelId'],
+        referencedTableName: this.tableModelName,
         referencedColumnNames: ['id'],
         onDelete: 'CASCADE',
       }),
@@ -68,7 +86,11 @@ export class CreateModelTable1686795095610 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey(this.tableName, 'FK_models_brand_id');
+    await queryRunner.dropForeignKey(
+      this.tableName,
+      `FK_products_presentation_id`,
+    );
+    await queryRunner.dropForeignKey(this.tableName, `FK_products_models_id`);
     await queryRunner.dropTable(this.tableName);
   }
 }

@@ -63,16 +63,20 @@ export class ModelsService {
   }
 
   async update(id: number, updateModelDto: UpdateModelDto): Promise<Model> {
-    const model: Model = await this.modelRepository.preload({
-      id,
-      ...updateModelDto,
-    });
-    if (updateModelDto.brandId) {
-      model.brand = await this.brandService.findOne(updateModelDto.brandId);
-    }
-    await this.modelRepository.save(model);
+    try {
+      const model: Model = await this.modelRepository.preload({
+        id,
+        ...updateModelDto,
+      });
+      if (updateModelDto.brandId) {
+        model.brand = await this.brandService.findOne(updateModelDto.brandId);
+      }
+      await this.modelRepository.save(model);
 
-    return model;
+      return model;
+    } catch (error) {
+      this.errorHandler.managementDbError(error);
+    }
   }
 
   async remove(id: number): Promise<string> {

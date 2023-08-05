@@ -34,7 +34,10 @@ export class ModelsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: number, @Body() updateModelDto: UpdateModelDto): Promise<Model> {
+  update(
+    @Param('id') id: number,
+    @Body() updateModelDto: UpdateModelDto,
+  ): Promise<Model> {
     return this.modelsService.update(id, updateModelDto);
   }
 

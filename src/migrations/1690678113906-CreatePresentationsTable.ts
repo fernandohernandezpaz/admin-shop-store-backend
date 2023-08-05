@@ -58,6 +58,7 @@ export class CreatePresentationsTable1690678113906
     await queryRunner.createForeignKey(
       this.tableName,
       new TableForeignKey({
+        name: 'Fk_presentations_category_id',
         columnNames: ['categoryId'],
         referencedTableName: this.tableCategoryName,
         referencedColumnNames: ['id'],
@@ -67,7 +68,10 @@ export class CreatePresentationsTable1690678113906
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropForeignKey(this.tableName, 'FK_tabla2_tabla1Id');
+    await queryRunner.dropForeignKey(
+      this.tableName,
+      'Fk_presentations_category_id',
+    );
     await queryRunner.dropTable(this.tableName);
   }
 }

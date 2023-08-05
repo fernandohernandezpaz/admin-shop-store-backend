@@ -5,10 +5,11 @@ import {
 
 export class ErrorHandler {
   public managementDbError(error: any): void {
+    const { code, detail } = error;
     console.log(error);
-    if (error.code === '23505') throw new BadRequestException(error.detail);
+    if (code === '23505') throw new BadRequestException(detail);
     throw new InternalServerErrorException(
-      'Unexcepted error, check server logs',
+      'Unexpected error, check server logs',
     );
   }
 }

@@ -74,7 +74,6 @@ export class PresentationsService {
     id: number,
     updatePresentationDto: UpdatePresentationDto,
   ): Promise<Presentation> {
-    console.log(id);
     const presentation: Presentation =
       await this.presentationRepository.preload({
         id,

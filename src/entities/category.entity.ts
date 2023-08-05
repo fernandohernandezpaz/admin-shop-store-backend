@@ -9,5 +9,5 @@ export class Category extends Catalog {
     (presentation: Presentation) => presentation.category,
     { cascade: true },
   )
-  presentations: Presentation[];
+  presentations: Presentation;
 }
