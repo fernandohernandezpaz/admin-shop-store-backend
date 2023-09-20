@@ -42,7 +42,7 @@ export class BrandsService {
     return brand;
   }
 
-  async update(id: number, updateBrandDto: UpdateBrandDto) {
+  async update(id: number, updateBrandDto: UpdateBrandDto): Promise<Brand> {
     const brand: Brand = await this.brandRepository.preload({
       id,
       ...updateBrandDto,
